@@ -1,0 +1,35 @@
+<div id="form">
+  <%= form_for @carro, :url => {:action => "create"} do |f| -%>
+    <strong> Quer vender ?</strong>
+    <br/>
+    <%= f.label :nome, "Nome" %>
+    <%= f.text_field :nome, :class => "button-input" %>
+    <br/>
+    <%= f.label :descricao, "Descrição"%>
+    <%= f.text_field :descricao , :cols => 26 , :rows => 9 %>
+    <br/>
+    <%= f.label :preco, "Preço"%>
+    <%= f.text_field :preco, :class => "button-input" %>
+    <br/>
+    <%= f.submit "Anunciar!", :disable_with => "...", :class => "anunciar" %>
+  <% end -%>
+
+</div>
+<div style="clear:both"></div>
+
+
+
+
+<div id="busca">
+  <strong>Carros a venda </strong></br>
+  <% if !@carros.blank? %>
+    <% for carro in @carros %>
+      <p><%= carro.nome %></p></br>
+      <p><%= carro.descricao %></p></br>
+      <p>R$<%= carro.preco %></p></br>
+    <% end %>
+  <% else %>
+    <p>Nenhum carro cadastro.</p>
+  <% end %>
+</div>
+<%= will_paginate @carros%>
